@@ -39,6 +39,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useNodesQuery } from '@/api/queries/useNodesQuery';
 import { useHostsQuery } from '@/api/queries/useHostsQuery';
+import { useAllSettings } from '@/api/queries/useAllSettings';
 import { withHostEndpoints } from '@/lib/hosts/host-link';
 import AppSidebar from '@/layouts/AppSidebar';
 const TextModal = lazy(() => import('@/components/feedback/TextModal'));
@@ -112,6 +113,9 @@ export default function InboundsPage() {
   }, [messageApi]);
 
   const { nodes: nodesList, fetched: nodesFetched } = useNodesQuery();
+  // The AntiBan toggle is panel-wide; the inbound editor shows a hint when it
+  // is on so the admin knows why a saved inbound may differ from the form.
+  const { allSetting } = useAllSettings();
   // MTProto share links are generated from this list, so an empty one must mean
   // "no hosts" and not "not loaded yet" — the gate below waits for it.
   const {
@@ -822,6 +826,7 @@ export default function InboundsPage() {
             dbInbounds={dbInbounds}
             availableNodes={nodesList}
             availableNodesFetched={nodesFetched}
+            antibanActive={!!allSetting?.antibanEnable}
           />
         </LazyMount>
         <LazyMount when={infoOpen}>
