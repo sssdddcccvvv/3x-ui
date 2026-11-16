@@ -482,8 +482,15 @@ func (s *SubClashService) buildProxy(subReq *SubService, inbound *model.Inbound,
 		proxy["uuid"] = applyVlessRoute(client.ID, hostVlessRoute(ep))
 		inboundSettings := subReq.linkSettings(inbound)
 		streamSecurity, _ := stream["security"].(string)
-		if client.Flow != "" && !inbound.DisableFlow && vlessFlowAllowed(network, streamSecurity, inboundSettings) {
-			proxy["flow"] = client.Flow
+		flow := client.Flow
+		if flow == "" {
+			// AntiBan: a Mihomo client without the Vision flow keeps the
+			// TLS-in-TLS signature the DPI looks for, so the hardened
+			// profile is forced here too.
+			flow = antiBanForcedFlow(network, streamSecurity)
+		}
+		if flow != "" && !inbound.DisableFlow && vlessFlowAllowed(network, streamSecurity, inboundSettings) {
+			proxy["flow"] = flow
 		}
 		if encryption, ok := inboundSettings["encryption"].(string); ok {
 			encryption = strings.TrimSpace(encryption)
