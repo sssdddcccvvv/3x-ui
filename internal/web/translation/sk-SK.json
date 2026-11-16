@@ -803,7 +803,9 @@
         "peerNumber": "Peer {n}",
         "peerNumberConfig": "Konfigurácia peeru {n}"
       },
-      "sniffingDestOverride": "Prepísať cieľ"
+      "sniffingDestOverride": "Prepísať cieľ",
+      "antibanActive": "AntiBan je aktívny",
+      "antibanActiveDesc": "Tento panel pri uložení posilní každý inbound VLESS+REALITY a každú vygenerovanú zdieľanú linku: tok Vision, náhodný shortId, SNI odvodený z cieľa REALITY a bez postkvantovej výmeny kľúčov na starších jadrách. Po zapnutí odkazy znovu importujte."
     },
     "clients": {
       "tabBasics": "Základné údaje",
@@ -1980,7 +1982,9 @@
       "subHostSortMode": "Poradie uzlov v predplatnom",
       "subHostSortInbound": "Poradie inboundov (predvolené)",
       "subHostSortHosts": "Poradie hostiteľov",
-      "subHostSortModeDesc": "Poradie hostiteľov sa riadi stránkou Hostitelia naprieč inboundmi. Určuje poradie, ktoré odosiela server; klientske aplikácie môžu použiť vlastné triedenie."
+      "subHostSortModeDesc": "Poradie hostiteľov sa riadi stránkou Hostitelia naprieč inboundmi. Určuje poradie, ktoré odosiela server; klientske aplikácie môžu použiť vlastné triedenie.",
+      "antibanEnable": "🛡 AntiBan (skryje tunel pred DPI)",
+      "antibanEnableDesc": "Vynútiť posilnený profil na každom inbound VLESS+REALITY: tok Vision, náhodný shortId, SNI odvodený z cieľa a bez postkvantovej výmeny kľúčov na starších jadrách. Po zapnutí musíte existujúce odkazy znovu importovať."
     },
     "xray": {
       "save": "Uložiť",

@@ -43,6 +43,7 @@ import {
   type InboundFormValues,
 } from '@/schemas/forms/inbound-form';
 import { FormField, rhfZodValidate } from '@/components/form/rhf';
+import AntiBanActiveHint from '@/pages/inbounds/form/AntiBanActiveHint';
 import { Protocols, TRAFFIC_RESETS } from '@/schemas/primitives';
 import { SockoptStreamSettingsSchema } from '@/schemas/protocols/stream/sockopt';
 import { HysteriaStreamSettingsSchema } from '@/schemas/protocols/stream/hysteria';
@@ -194,6 +195,8 @@ interface InboundFormModalProps {
   dbInbounds: DBInbound[];
   availableNodes?: NodeRecord[];
   availableNodesFetched?: boolean;
+  /** Whether the panel-level AntiBan hardening is on (shows the editor hint). */
+  antibanActive?: boolean;
 }
 
 function buildAddModeValues(): InboundFormValues {
@@ -252,6 +255,7 @@ export default function InboundFormModal({
   dbInbounds,
   availableNodes,
   availableNodesFetched = true,
+  antibanActive = false,
 }: InboundFormModalProps) {
   const { t } = useTranslation();
   const uid = useId();
@@ -926,6 +930,7 @@ export default function InboundFormModal({
             title={t('pages.inbounds.fallbacks.needsTls')}
           />
         )}
+      <AntiBanActiveHint enabled={antibanActive} />
     </>
   );
 

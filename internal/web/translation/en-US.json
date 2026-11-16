@@ -312,6 +312,8 @@
       "node": "Node",
       "deployTo": "Deploy to",
       "localPanel": "Local panel",
+      "antibanActive": "AntiBan is active",
+      "antibanActiveDesc": "This panel hardens every VLESS+REALITY inbound on save and every generated share link: Vision flow, a random shortId, an SNI derived from the REALITY target, and no post-quantum key share on old cores. Re-import the links after enabling it.",
       "fallbacks": {
         "title": "Fallbacks",
         "empty": "No fallbacks yet",
@@ -1522,6 +1524,8 @@
       "trustedProxyCidrsDesc": "Comma-separated IPs/CIDRs allowed to set forwarded host, proto, and client IP headers.",
       "realityScanCandidates": "Reality scan candidates",
       "realityScanCandidatesDesc": "Comma-separated host:port targets (or CIDRs) used as the default list when Find Targets runs with an empty search. Customize this with destinations you reuse often.",
+      "antibanEnable": "🛡 AntiBan (hide the tunnel from DPI)",
+      "antibanEnableDesc": "Force the hardened profile on every VLESS+REALITY inbound: Vision flow, random shortId, SNI derived from the target, and no post-quantum key share on old cores. Existing links must be re-imported after enabling.",
       "ldap": {
         "enable": "Enable LDAP sync",
         "host": "LDAP host",

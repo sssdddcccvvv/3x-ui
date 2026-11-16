@@ -286,6 +286,17 @@ export default function GeneralTab({ allSetting, updateSetting }: GeneralTabProp
 
               <SettingListItem
                 paddings="small"
+                title={t('pages.settings.antibanEnable')}
+                description={t('pages.settings.antibanEnableDesc')}
+              >
+                <Switch
+                  checked={allSetting.antibanEnable}
+                  onChange={(v) => updateSetting({ antibanEnable: v })}
+                />
+              </SettingListItem>
+
+              <SettingListItem
+                paddings="small"
                 title={t('pages.settings.ipLimitAllowlist')}
                 description={t('pages.settings.ipLimitAllowlistDesc')}
               >

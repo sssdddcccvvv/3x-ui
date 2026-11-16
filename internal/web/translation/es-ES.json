@@ -803,7 +803,9 @@
         "peerNumberConfig": "Config Peer {n}"
       },
       "sniffingDestOverride": "Anulación de destino",
-      "advancedTitle": "Configuración avanzada"
+      "advancedTitle": "Configuración avanzada",
+      "antibanActive": "AntiBan está activo",
+      "antibanActiveDesc": "Este panel refuerza cada entrada VLESS+REALITY al guardar y cada enlace compartido generado: flujo Vision, un shortId aleatorio, un SNI derivado del destino REALITY y sin intercambio de claves postcuántico en núcleos antiguos. Reimporta los enlaces tras activarlo."
     },
     "clients": {
       "tabBasics": "Básico",
@@ -1859,7 +1861,9 @@
       "subHostSortMode": "Orden de nodos de suscripción",
       "subHostSortInbound": "Orden de entradas (predeterminado)",
       "subHostSortHosts": "Orden de hosts",
-      "subHostSortModeDesc": "Sigue el orden de la página de hosts entre distintas entradas. Determina el orden emitido por el servidor; las aplicaciones cliente pueden aplicar su propio orden."
+      "subHostSortModeDesc": "Sigue el orden de la página de hosts entre distintas entradas. Determina el orden emitido por el servidor; las aplicaciones cliente pueden aplicar su propio orden.",
+      "antibanEnable": "🛡 AntiBan (oculta el túnel al DPI)",
+      "antibanEnableDesc": "Forzar el perfil reforzado en cada entrada VLESS+REALITY: flujo Vision, shortId aleatorio, SNI derivado del destino y sin intercambio de claves postcuántico en núcleos antiguos. Debes reimportar los enlaces existentes tras activarlo."
     },
     "xray": {
       "save": "Guardar configuración",

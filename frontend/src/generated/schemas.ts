@@ -2,6 +2,9 @@
 export const SCHEMAS: Record<string, unknown> = {
   "AllSetting": {
     "properties": {
+      "antibanEnable": {
+        "type": "boolean"
+      },
       "datepicker": {
         "type": "string"
       },
@@ -584,6 +587,7 @@ export const SCHEMAS: Record<string, unknown> = {
       }
     },
     "required": [
+      "antibanEnable",
       "datepicker",
       "discordAdminIds",
       "discordBotBackup",
@@ -769,6 +773,9 @@ export const SCHEMAS: Record<string, unknown> = {
   },
   "AllSettingView": {
     "properties": {
+      "antibanEnable": {
+        "type": "boolean"
+      },
       "datepicker": {
         "type": "string"
       },
@@ -1375,6 +1382,7 @@ export const SCHEMAS: Record<string, unknown> = {
       }
     },
     "required": [
+      "antibanEnable",
       "datepicker",
       "discordAdminIds",
       "discordBotBackup",

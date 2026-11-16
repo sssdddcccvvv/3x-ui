@@ -803,7 +803,9 @@
         "peerNumberConfig": "Peer {n} Yapılandırması"
       },
       "sniffingDestOverride": "Hedef geçersiz kılma",
-      "advancedTitle": "Gelişmiş Ayarlar"
+      "advancedTitle": "Gelişmiş Ayarlar",
+      "antibanActive": "AntiBan etkin",
+      "antibanActiveDesc": "Bu panel, kaydedilen her VLESS+REALITY inbound'i ve üretilen her paylaşım bağlantısını sertleştirir: Vision akışı, rastgele shortId, REALITY hedefinden türetilen SNI ve eski çekirdeklerde post-kuantum anahtar değişimi yok. Etkinleştirdikten sonra bağlantıları yeniden içe aktarın."
     },
     "clients": {
       "tabBasics": "Temel",
@@ -1859,7 +1861,9 @@
       "subHostSortMode": "Abonelik düğümü sıralaması",
       "subHostSortInbound": "Gelen bağlantı sırası (varsayılan)",
       "subHostSortHosts": "Ana bilgisayar sırası",
-      "subHostSortModeDesc": "Farklı gelen bağlantılarda Ana Bilgisayarlar sayfasının sırasını izler. Sunucunun çıktı sırasını belirler; istemci uygulamaları kendi sıralamalarını uygulayabilir."
+      "subHostSortModeDesc": "Farklı gelen bağlantılarda Ana Bilgisayarlar sayfasının sırasını izler. Sunucunun çıktı sırasını belirler; istemci uygulamaları kendi sıralamalarını uygulayabilir.",
+      "antibanEnable": "🛡 AntiBan (tüneli DPI'den gizle)",
+      "antibanEnableDesc": "Her VLESS+REALITY inbound için sertleştirilmiş profili zorunlu kıl: Vision akışı, rastgele shortId, hedeften türetilen SNI ve eski çekirdeklerde post-kuantum anahtar değişimi yok. Etkinleştirdikten sonra mevcut bağlantıları yeniden içe aktarın."
     },
     "xray": {
       "save": "Kaydet",

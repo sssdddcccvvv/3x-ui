@@ -803,7 +803,9 @@
         "peerNumberConfig": "Peer {n} 配置"
       },
       "sniffingDestOverride": "目标覆盖",
-      "advancedTitle": "高级设置"
+      "advancedTitle": "高级设置",
+      "antibanActive": "AntiBan 已启用",
+      "antibanActiveDesc": "本面板在保存时加固每个 VLESS+REALITY 入站，并加固每个生成的分享链接：Vision 流、随机 shortId、由 REALITY 目标派生的 SNI，并在旧内核上不进行后量子密钥交换。启用后请重新导入链接。"
     },
     "clients": {
       "tabBasics": "基本",
@@ -1859,7 +1861,9 @@
       "subHostSortMode": "订阅节点排序",
       "subHostSortInbound": "入站顺序（默认）",
       "subHostSortHosts": "主机顺序",
-      "subHostSortModeDesc": "跨入站使用主机页面中的排序。此设置决定服务器输出顺序；客户端应用仍可能自行排序。"
+      "subHostSortModeDesc": "跨入站使用主机页面中的排序。此设置决定服务器输出顺序；客户端应用仍可能自行排序。",
+      "antibanEnable": "🛡 AntiBan（对 DPI 隐藏隧道）",
+      "antibanEnableDesc": "对每个 VLESS+REALITY 入站强制应用加固配置：Vision 流、随机 shortId、由目标派生的 SNI，并在旧内核上不进行后量子密钥交换。启用后必须重新导入现有链接。"
     },
     "xray": {
       "importRules": "导入规则",

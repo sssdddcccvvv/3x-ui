@@ -312,6 +312,8 @@
       "node": "Узел",
       "deployTo": "Развернуть на",
       "localPanel": "Локальная панель",
+      "antibanActive": "AntiBan включён",
+      "antibanActiveDesc": "Панель ужесточает каждый inbound VLESS+REALITY при сохранении и каждую сгенерированную ссылку: Vision flow, случайный shortId, SNI из цели REALITY и без постквантового обмена ключами на старых ядрах. После включения импортируйте ссылки заново.",
       "fallbacks": {
         "title": "Fallback'и",
         "empty": "Фолбэков пока нет",
@@ -1397,6 +1399,8 @@
       "trustedProxyCidrsDesc": "IP/CIDR через запятую, которым разрешено устанавливать заголовки forwarded host, proto и client IP.",
       "realityScanCandidates": "Кандидаты сканирования Reality",
       "realityScanCandidatesDesc": "Список host:port (или CIDR) через запятую — используется по умолчанию в «Найти цели», если поиск пуст. Настройте под часто используемые цели.",
+      "antibanEnable": "🛡 AntiBan (скрыть туннель от DPI)",
+      "antibanEnableDesc": "Принудительно применять защищённый профиль к каждому inbound VLESS+REALITY: Vision flow, случайный shortId, SNI из цели и без постквантового обмена ключами на старых ядрах. После включения существующие ссылки нужно импортировать заново.",
       "ldap": {
         "enable": "Включить LDAP-синхронизацию",
         "host": "LDAP-хост",

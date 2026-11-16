@@ -10,6 +10,7 @@ export type trafficLocalApplyAction = number;
 export type transportBits = number;
 
 export interface AllSetting {
+  antibanEnable: boolean;
   datepicker: string;
   discordAdminIds: string;
   discordBotBackup: boolean;
@@ -193,6 +194,7 @@ export interface AllSetting {
 }
 
 export interface AllSettingView {
+  antibanEnable: boolean;
   datepicker: string;
   discordAdminIds: string;
   discordBotBackup: boolean;

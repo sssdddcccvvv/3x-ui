@@ -803,7 +803,9 @@
         "peerNumberConfig": "Peer {n} 設定"
       },
       "sniffingDestOverride": "宛先のオーバーライド",
-      "advancedTitle": "詳細設定"
+      "advancedTitle": "詳細設定",
+      "antibanActive": "AntiBan は有効です",
+      "antibanActiveDesc": "このパネルは保存時のすべての VLESS+REALITY インバウンドと生成される共有リンクを強化します: Vision フロー、ランダムな shortId、REALITY ターゲットから導出した SNI、そして古いコアでの耐量子鍵交換なし。有効化後はリンクを再インポートしてください。"
     },
     "clients": {
       "tabBasics": "基本",
@@ -1859,7 +1861,9 @@
       "subHostSortMode": "サブスクリプションのノード順序",
       "subHostSortInbound": "インバウンド順（既定）",
       "subHostSortHosts": "ホスト順",
-      "subHostSortModeDesc": "異なるインバウンド間でもホストページの順序に従います。サーバーが出力する順序を指定しますが、クライアントアプリが独自に並べ替える場合があります。"
+      "subHostSortModeDesc": "異なるインバウンド間でもホストページの順序に従います。サーバーが出力する順序を指定しますが、クライアントアプリが独自に並べ替える場合があります。",
+      "antibanEnable": "🛡 AntiBan（DPI からトンネルを見えなくする）",
+      "antibanEnableDesc": "VLESS+REALITY のすべてのインバウンドに強化プロファイルを適用します: Vision フロー、ランダムな shortId、ターゲットから導出した SNI、そして古いコアでの耐量子鍵交換なし。有効化後は既存リンクを再インポートしてください。"
     },
     "xray": {
       "importRules": "ルールをインポート",

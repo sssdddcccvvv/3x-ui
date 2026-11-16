@@ -803,7 +803,9 @@
         "peerNumberConfig": "Cấu hình Peer {n}"
       },
       "sniffingDestOverride": "Ghi đè đích",
-      "advancedTitle": "Cài đặt nâng cao"
+      "advancedTitle": "Cài đặt nâng cao",
+      "antibanActive": "AntiBan đang bật",
+      "antibanActiveDesc": "Bảng điều khiển này tăng cường mọi inbound VLESS+REALITY khi lưu và mọi liên kết chia sẻ được tạo: luồng Vision, shortId ngẫu nhiên, SNI suy ra từ đích REALITY và không trao đổi khóa hậu lượng tử trên các core cũ. Hãy nhập lại liên kết sau khi bật."
     },
     "clients": {
       "tabBasics": "Cơ bản",
@@ -1859,7 +1861,9 @@
       "subHostSortMode": "Thứ tự nút đăng ký",
       "subHostSortInbound": "Thứ tự kết nối vào (mặc định)",
       "subHostSortHosts": "Thứ tự máy chủ",
-      "subHostSortModeDesc": "Theo thứ tự trên trang Máy chủ giữa các kết nối vào. Thiết lập này quyết định thứ tự do máy chủ xuất ra; ứng dụng khách có thể tự sắp xếp lại."
+      "subHostSortModeDesc": "Theo thứ tự trên trang Máy chủ giữa các kết nối vào. Thiết lập này quyết định thứ tự do máy chủ xuất ra; ứng dụng khách có thể tự sắp xếp lại.",
+      "antibanEnable": "🛡 AntiBan (ẩn đường hầm khỏi DPI)",
+      "antibanEnableDesc": "Ép buộc hồ sơ tăng cường cho mọi inbound VLESS+REALITY: luồng Vision, shortId ngẫu nhiên, SNI suy ra từ đích và không trao đổi khóa hậu lượng tử trên các core cũ. Cần nhập lại các liên kết hiện có sau khi bật."
     },
     "xray": {
       "importRules": "Nhập quy tắc",
