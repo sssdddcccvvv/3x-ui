@@ -403,6 +403,14 @@ func (s *ClientService) AddInboundClient(inboundSvc *InboundService, data *model
 	defer InvalidateSubData()
 	defer lockInbound(data.Id).Unlock()
 
+	// AntiBan hardening: the XTLS flow must survive into the saved settings.
+	if hardened, changed, err := ApplyAntiBan(data); err != nil {
+		logger.Warningf("AntiBan: inbound %d could not be hardened: %v", data.Id, err)
+	} else if changed && hardened != nil {
+		data.Settings = hardened.Settings
+		data.StreamSettings = hardened.StreamSettings
+	}
+
 	clients, err := inboundSvc.GetClients(data)
 	if err != nil {
 		return false, err
@@ -748,6 +756,14 @@ func (s *ClientService) AddInboundClient(inboundSvc *InboundService, data *model
 func (s *ClientService) UpdateInboundClient(inboundSvc *InboundService, data *model.Inbound, oldEmail string) (bool, error) {
 	defer InvalidateSubData()
 	defer lockInbound(data.Id).Unlock()
+
+	// AntiBan hardening: the XTLS flow must survive into the saved settings.
+	if hardened, changed, err := ApplyAntiBan(data); err != nil {
+		logger.Warningf("AntiBan: inbound %d could not be hardened: %v", data.Id, err)
+	} else if changed && hardened != nil {
+		data.Settings = hardened.Settings
+		data.StreamSettings = hardened.StreamSettings
+	}
 
 	clients, err := inboundSvc.GetClients(data)
 	if err != nil {

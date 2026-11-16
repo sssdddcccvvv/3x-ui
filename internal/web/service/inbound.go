@@ -1307,6 +1307,13 @@ func (s *InboundService) AddInbound(inbound *model.Inbound) (*model.Inbound, boo
 	inbound.TrafficResetDay = normalizeTrafficResetDay(inbound.TrafficResetDay)
 	// Normalize streamSettings based on protocol
 	s.normalizeStreamSettings(inbound)
+	// AntiBan hardening: force the XTLS flow, fill a random shortId and
+	// derive the SNI when the admin left them empty.
+	if hardened, changed, err := ApplyAntiBan(inbound); err != nil {
+		logger.Warningf("AntiBan: inbound %d could not be hardened: %v", inbound.Id, err)
+	} else if changed && hardened != nil {
+		inbound = hardened
+	}
 	if !s.FromNodeSync {
 		if err := validateInboundTLSCertificates(inbound.StreamSettings); err != nil {
 			return inbound, false, err
@@ -2028,6 +2035,13 @@ func (s *InboundService) UpdateInbound(inbound *model.Inbound) (*model.Inbound, 
 	inbound.TrafficResetDay = normalizeTrafficResetDay(inbound.TrafficResetDay)
 	// Normalize streamSettings based on protocol
 	s.normalizeStreamSettings(inbound)
+	// AntiBan hardening: force the XTLS flow, fill a random shortId and
+	// derive the SNI when the admin left them empty.
+	if hardened, changed, err := ApplyAntiBan(inbound); err != nil {
+		logger.Warningf("AntiBan: inbound %d could not be hardened: %v", inbound.Id, err)
+	} else if changed && hardened != nil {
+		inbound = hardened
+	}
 	if err := validateFinalMaskRealityCombo(inbound.StreamSettings); err != nil {
 		return inbound, false, err
 	}
