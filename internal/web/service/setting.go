@@ -76,6 +76,7 @@ var defaultValueMap = map[string]string{
 	"sessionMaxAge":               "360",
 	"trustedProxyCIDRs":           DefaultTrustedProxyCIDRs,
 	"realityScanCandidates":       DefaultRealityScanCandidatesCSV,
+	"antibanEnable":               "false",
 	"ipLimitAllowlist":            "",
 	"pageSize":                    "25",
 	"expireDiff":                  "0",
@@ -757,6 +758,17 @@ func (s *SettingService) GetTrustedProxyCIDRs() (string, error) {
 
 func (s *SettingService) GetRealityScanCandidates() (string, error) {
 	return s.getString("realityScanCandidates")
+}
+
+// GetAntiBanEnable reports whether the AntiBan hardening toggle is on.
+// A missing or unreadable setting means "off": AntiBan rewrites inbound
+// configuration, so it must never engage because of a storage error.
+func (s *SettingService) GetAntiBanEnable() bool {
+	enabled, err := s.getBool("antibanEnable")
+	if err != nil {
+		return false
+	}
+	return enabled
 }
 
 func (s *SettingService) GetRemarkTemplate() (string, error) {
