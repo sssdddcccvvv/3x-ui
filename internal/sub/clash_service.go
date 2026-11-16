@@ -1276,8 +1276,9 @@ func (s *SubClashService) applySecurity(proxy map[string]any, security string, s
 			realityOpts["short-id"] = shortID
 		}
 		if len(realityOpts) > 0 {
-			// Xray 26.9.8+ rejects REALITY handshakes without an ML-KEM key share.
-			realityOpts["support-x25519mlkem768"] = true
+			// Xray 26.9.8+ rejects REALITY handshakes without an ML-KEM key share,
+			// so AntiBan only drops the hint for an older core.
+			realityOpts["support-x25519mlkem768"] = !antiBanMLKEMDroppable()
 			proxy["reality-opts"] = realityOpts
 		}
 		proxy["client-fingerprint"] = "chrome"

@@ -44,3 +44,23 @@ func antiBanForcedFlow(network, security string) string {
 	}
 	return antiBanVisionFlow
 }
+
+// antiBanCoreVersion reports the version of the Xray core this panel serves.
+// It is a variable so tests can pin it.
+var antiBanCoreVersion = func() string {
+	return (&service.XrayService{}).GetXrayVersion()
+}
+
+// antiBanMLKEMDroppable reports whether clients may drop the ML-KEM key
+// share from their ClientHello.
+//
+// The post-quantum key share is exactly what TSPU blackholes, but Xray
+// 26.9.8 and newer refuse a REALITY handshake without it. So the drop is
+// offered only to an old core; against a modern core the hybrid stays and the
+// tunnel keeps working.
+func antiBanMLKEMDroppable() bool {
+	if !antiBanEnabled() {
+		return false
+	}
+	return service.AntiBanCoreOlderThan(antiBanCoreVersion())
+}

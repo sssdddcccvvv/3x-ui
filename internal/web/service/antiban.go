@@ -22,7 +22,25 @@ const (
 	// shortId; 4 bytes render as 8 lowercase hex characters, the format
 	// Xray expects.
 	antiBanShortIDBytes = 4
+	// antiBanMLKEMDropCoreVersion is the first Xray core that refuses a
+	// REALITY handshake without an ML-KEM key share. Only cores older than
+	// this can be told to send a plain X25519 hello.
+	antiBanMLKEMDropCoreVersion = "26.9.8"
 )
+
+// AntiBanCoreOlderThan reports whether the given Xray core version predates
+// antiBanMLKEMDropCoreVersion, i.e. the core still accepts a plain X25519
+// hello and the client may be told to drop the post-quantum key share.
+//
+// An unknown or unparsable version answers false: AntiBan never risks
+// breaking a handshake on a version it cannot read.
+func AntiBanCoreOlderThan(version string) bool {
+	cmp, ok := compareXrayCoreVersions(version, antiBanMLKEMDropCoreVersion)
+	if !ok {
+		return false
+	}
+	return cmp < 0
+}
 
 // ApplyAntiBan hardens a VLESS + REALITY(TCP) inbound so the connection it
 // produces is indistinguishable from a browser talking to the REALITY target.
