@@ -631,6 +631,9 @@ func (s *SubJsonService) buildBalancerConfig(balancer *model.SubBalancer, entrie
 
 func (s *SubJsonService) getConfig(subReq *SubService, inbound *model.Inbound, client model.Client, host string) []json_util.RawMessage {
 	var newJsonArray []json_util.RawMessage
+	// AntiBan hardens the inbound copy the outbound is built from: the derived
+	// SNI and the generated short id must be the ones the client presents.
+	inbound = antiBanHardenedInbound(inbound)
 	stream := s.streamData(inbound.StreamSettings, subKey(client))
 
 	// When externalProxy is empty the JSON config falls back to a
@@ -731,6 +734,12 @@ func (s *SubJsonService) getConfig(subReq *SubService, inbound *model.Inbound, c
 			newNetwork, _ := newStream["network"].(string)
 			if vc.Flow != "" && !vlessFlowAllowed(newNetwork, security, subReq.linkSettings(inbound)) {
 				vc.Flow = ""
+			}
+			// AntiBan: a client created before the toggle has an empty flow in
+			// the clients table; without it the outbound is a plain TLS
+			// handshake inside the tunnel.
+			if vc.Flow == "" {
+				vc.Flow = antiBanForcedFlow(newNetwork, security)
 			}
 			newOutbounds = append(newOutbounds, s.genVless(subReq, inbound, streamSettings, vc, jsonMux(mux, hostMux)))
 		case "trojan", "shadowsocks":

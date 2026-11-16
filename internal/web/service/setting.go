@@ -412,6 +412,11 @@ func (s *SettingService) ResetSettings() error {
 
 func (s *SettingService) getSetting(key string) (*model.Setting, error) {
 	db := database.GetDB()
+	if db == nil {
+		// No database yet: every setting is unreadable, which callers treat as
+		// "not configured". Without this guard a read before InitDB panics.
+		return nil, errors.New("database is not initialized")
+	}
 	setting := &model.Setting{}
 	err := db.Model(model.Setting{}).Where("key = ?", key).First(setting).Error
 	if err != nil {

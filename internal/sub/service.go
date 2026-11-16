@@ -1394,6 +1394,9 @@ func (s *SubService) genVlessLink(inbound *model.Inbound, email string) string {
 	if inbound.Protocol != model.VLESS {
 		return ""
 	}
+	// AntiBan hardens the inbound copy the link is built from: a derived SNI
+	// and a generated short id are what the client must present to the server.
+	inbound = antiBanHardenedInbound(inbound)
 	address := s.resolveInboundAddress(inbound)
 	stream := unmarshalStreamSettings(inbound.StreamSettings)
 	client, ok := s.clientForLink(inbound, email)
@@ -1423,8 +1426,16 @@ func (s *SubService) genVlessLink(inbound *model.Inbound, email string) string {
 	default:
 		params["security"] = "none"
 	}
-	if len(client.Flow) > 0 && !inbound.DisableFlow && vlessFlowAllowed(streamNetwork, security, settings) {
-		params["flow"] = client.Flow
+	// A client created before AntiBan was switched on still has an empty flow
+	// in the clients table, and a flow-less vless+reality link is a plain TLS
+	// handshake inside the tunnel — the shape TSPU detects. Force the flow
+	// when the toggle is on.
+	flow := client.Flow
+	if flow == "" {
+		flow = antiBanForcedFlow(streamNetwork, security)
+	}
+	if len(flow) > 0 && !inbound.DisableFlow && vlessFlowAllowed(streamNetwork, security, settings) {
+		params["flow"] = flow
 	}
 
 	externalProxies, _ := stream["externalProxy"].([]any)
