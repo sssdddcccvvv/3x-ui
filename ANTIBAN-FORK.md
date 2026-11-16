@@ -34,6 +34,31 @@ share. So the two requirements conflict:
 The panel reads the version of the core it is running, so the switch is automatic. If you
 upgrade the core, the hybrid key share comes back on its own.
 
+### Client compatibility (server core vs client core)
+
+Two version gates decide whether a client can complete the REALITY handshake at all:
+
+| Server core | Old clients (Xray < 26.3.27, Mihomo/sing-box based apps) | Symptom on the client |
+|---|---|---|
+| 26.9.8+ | refused — the handshake must carry an ML-KEM key share | `REALITY: processed invalid connection` |
+| 26.7.11 – 26.9.7 | refused unless `minClientVer` is set (empty ⇒ built-in minimum 26.3.27) | `failed to find an available destination` |
+| ≤ 26.7.10 | accepted | works |
+
+`realitySettings.minClientVer` is the lever: set it to `1.0.0` to accept any client
+version. A server that lowers the minimum logs a warning — a wider client range makes
+the server easier to fingerprint, which is the price of keeping old clients alive.
+
+A fleet of old clients and a modern core cannot coexist. Two ways out:
+
+1. pin the server core to the newest release older than 26.9.8 (26.7.28 at the time of
+   writing) and set `minClientVer: 1.0.0` — old and new clients both work;
+2. update the clients to a core that sends the post-quantum key share (Xray ≥ 26.9.8)
+   and keep the modern server core.
+
+Option 1 is exactly what the ML-KEM rule above already does to the link parameters, so
+the switch is automatic: downgrade the core and the panel stops emitting
+`support-x25519mlkem768` on its own.
+
 ## What it does *not* promise
 
 * No 100 % invisibility guarantee. AntiBan removes the cheapest detectors (TLS-in-TLS
